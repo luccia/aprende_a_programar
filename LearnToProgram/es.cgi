@@ -48,7 +48,7 @@ class LearnToProgramTutorial
     @chapters['05'     ] = ['More About Methods',       :generateMethods]
     @chapters['06'     ] = ['Flow Control',             :generateFlowControl]
     @chapters['07'     ] = ['Arrays and Iterators',     :generateArrays]
-    @chapters['08'     ] = ['Writing Your Own Methods', :generateDefMethod]
+    @chapters['08'     ] = ['Escriba sus propios métodos', :generateDefMethod]
     @chapters['09'     ] = ['Classes',                  :generateClasses]
     @chapters['10'     ] = ['Blocks and Procs',         :generateBlocksProcs]
     @chapters['11'     ] = ['Beyond This Tutorial',     :generateBeyond]
@@ -2558,463 +2558,469 @@ class LearnToProgramTutorial
   end
   
   #
-  #  WRITING METHODS
+  #  ESCRIBIENDO MÉTODOS
   #
   
   def generateDefMethod
     para do <<-END_PARAGRAPH
-      As we've seen, loops and iterators allow us to do the
-      same thing (run the same code) over and over again.
-      However, sometimes we want to do the same thing a
-      number of times, but from different places in the program.
-      For example, let's say we were writing a questionnaire
-      program for a psychology student.  From the psychology
-      students I have known and the questionnaires they have
-      given me, it would probably go something like this:
+          Como hemos visto anteriormente, los ciclos e iteradores
+    nos permiten hacer lo mismo (o ejecutar el mismo código) una y
+    otra vez.  Sin embargo, a veces queremos hacer algo una cierta
+    cantidad de veces, pero desde distintos lugares en el
+    programa.  Por ejemplo, supongamos que estamos escribiendo un
+    programa que consiste en un cuestionario para un estudiante de
+    psicología. De los estudiantes de psicología que he conocido y
+    de los cuestionarios que me han dado, esto sería algo similar
+    a:
+
       END_PARAGRAPH
     end
-    prog ['yes','yes','no way!','NO','yes','yes'] do <<-END_CODE
-      puts 'Hello, and thank you for taking the time to'
-      puts 'help me with this experiment.  My experiment'
-      puts 'has to do with the way people feel about'
-      puts 'Mexican food.  Just think about Mexican food'
-      puts 'and try to answer every question honestly,'
-      puts 'with either a "yes" or a "no".  My experiment'
-      puts 'has nothing to do with bed-wetting.'
+    prog ['sí','sí','de ninguna manera!','NO','sí','sí'] do <<-END_CODE
+      puts 'Hola, y gracias por el tiempo que le está dedicando'
+      puts 'para ayudarme con este experimento.  Mi experimento' 
+      puts 'estudia los gustos de las personas respecto a la' 
+      puts 'comida mejicana. Simplemente piense en comida' 
+      puts 'mejicana y trate de responder honestamente a' 
+      puts 'cada pregunta con un "sí" o "no". Mi experimento'
+      puts 'no tiene ninguna relación con mojar la cama.'
       puts
       
-      #  We ask these questions, but we ignore their answers.
+      #  Hacemos estas preguntas, pero ignoramos las
+      #  respuestas. 
       
-      goodAnswer = false
-      while (not goodAnswer)
-        puts 'Do you like eating tacos?'
-        answer = gets.chomp.downcase
-        if (answer == 'yes' or answer == 'no')
-          goodAnswer = true
+      respuestaCorrecta = false
+      while (not respuestaCorrecta)
+        puts 'Le gusta comer tacos?'
+        respuesta = gets.chomp.downcase
+        if (respuesta == 'sí' or respuesta == 'no')
+          respuestaCorrecta = true
         else
-          puts 'Please answer "yes" or "no".'
+          puts 'Por favor responda con "sí" or "no".'
         end
       end
       
-      goodAnswer = false
-      while (not goodAnswer)
-        puts 'Do you like eating burritos?'
-        answer = gets.chomp.downcase
-        if (answer == 'yes' or answer == 'no')
-          goodAnswer = true
+      respuestaCorrecta = false
+      while (not respuestaCorrecta)
+        puts 'Le gusta comer burritos?'
+        respuesta = gets.chomp.downcase
+        if (respuesta == 'sí' or respuesta == 'no')
+          respuestaCorrecta = true
         else
-          puts 'Please answer "yes" or "no".'
+          puts 'Por favor responda con "sí" or "no".'
         end
       end
       
-      #  We pay attention to *this* answer, though.
-      goodAnswer = false
-      while (not goodAnswer)
-        puts 'Do you wet the bed?'
-        answer = gets.chomp.downcase
-        if (answer == 'yes' or answer == 'no')
-          goodAnswer = true
-          if answer == 'yes'
-            wetsBed = true
+      #  Sin embargo, prestamos atención a *esta* pregunta.
+      respuestaCorrecta = false
+      while (not respuestaCorrecta)
+        puts 'Usted moja la cama?'
+        respuesta = gets.chomp.downcase
+        if (respuesta == 'sí' or respuesta == 'no')
+          respuestaCorrecta = true
+          if respuesta == 'sí'
+            mojaLaCama = true
           else
-            wetsBed = false
+            mojaLaCama = false
           end
         else
-          puts 'Please answer "yes" or "no".'
+          puts 'Por favor responda con "sí" or "no".'
         end
       end
       
-      goodAnswer = false
-      while (not goodAnswer)
-        puts 'Do you like eating chimichangas?'
-        answer = gets.chomp.downcase
-        if (answer == 'yes' or answer == 'no')
-          goodAnswer = true
+      respuestaCorrecta = false
+      while (not respuestaCorrecta)
+        puts 'Le gusta comer chimichangas?'
+        respuesta = gets.chomp.downcase
+        if (respuesta == 'sí' or respuesta == 'no')
+          respuestaCorrecta = true
         else
-          puts 'Please answer "yes" or "no".'
+          puts 'Por favor responda con "sí" or "no".'
         end
       end
       
-      puts 'Just a few more questions...'
+      puts 'Sólo unas preguntas más...'
       
-      goodAnswer = false
-      while (not goodAnswer)
-        puts 'Do you like eating sopapillas?'
-        answer = gets.chomp.downcase
-        if (answer == 'yes' or answer == 'no')
-          goodAnswer = true
+      respuestaCorrecta = false
+      while (not respuestaCorrecta)
+        puts 'Le gusta comer sopapillas?'
+        respuesta = gets.chomp.downcase
+        if (respuesta == 'sí' or respuesta == 'no')
+          respuestaCorrecta = true
         else
-          puts 'Please answer "yes" or "no".'
+          puts 'Por favor responda con "sí" or "no".'
         end
       end
       
-      #  Ask lots of other questions about Mexican food.
+      #  Pregunta muchas otras preguntas sobre comida
+      #  mejicana.
       
       puts
-      puts 'DEBRIEFING:'
-      puts 'Thank you for taking the time to help with'
-      puts 'this experiment.  In fact, this experiment'
-      puts 'has nothing to do with Mexican food.  It is'
-      puts 'an experiment about bed-wetting.  The Mexican'
-      puts 'food was just there to catch you off guard'
-      puts 'in the hopes that you would answer more'
-      puts 'honestly.  Thanks again.'
+      puts 'INTERROGATORIO:'
+      puts 'Gracias por el tiempo dedicado a ayudarnos en'
+      puts 'este experimento. En realidad, este experimento'
+      puts 'no tiene ninguna relación con la comida mejicana.'
+      puts 'Este es un experimento que estudia el mojar la '
+      puts 'cama. La comida mejicana estaba sólo para que '
+      puts 'estuviera desprevenido, esperando que respondiera más'
+      puts 'honestamente.  Nuevamente, muchas gracias.'
       puts
-      puts wetsBed
+      puts mojaLaCama
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      That was a pretty long program, with lots of repetition.
-      (All of the sections of code around the questions about Mexican food
-      were identical, and the bed-wetting question was only
-      slightly different.)
-      Repetition is a bad thing.  Still, we can't make it into
-      a big loop or iterator, because sometimes we have things
-      we want to do between questions.  In situations like these,
-      it's best to write a method.  Here's how:
+      Ese fue un programa bastante largo, con mucha repetición.
+      (Todas las secciones de código sobre las preguntas de comida 
+      mejicana eran idénticas, y la pregunta sobre mojar la cama fue
+      la única pregunta levemente diferente).
+      La repetición es mala. Sin embargo, no podemos transformar el 
+      código en un gran bucle o iterador, porque a veces queremos 
+      hacer algo entre las preguntas. En situaciones como estas, 
+      lo mejor es escribir un método, como se describe a continuación:
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def sayMoo
-        puts 'mooooooo...'
+      def decirMuu
+        puts 'muuuuuuu...'
       end
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      Uh... our program didn't #{code 'sayMoo'}.
-      Why not?  Because we didn't tell it to.
-      We told it <em>how</em> to #{code 'sayMoo'},
-      but we never actually said to <em>do</em> it.
-      Let's give it another shot:
+      Uh... Nuestro programa no hizo #{code 'decirMuu'}.
+      Por qué no? Porque no le dijimos que lo hiciera.
+      Le dijimos <em>cómo</em> hacer #{code 'decirMuu'},
+      pero nunca le dijimos realmente para <em>hacerlo</em>.
+      Intentemos nuevamente:
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def sayMoo
-        puts 'mooooooo...'
+      def decirMuu
+        puts 'muuuuuuu...'
       end
       
-      sayMoo
-      sayMoo
+      decirMuu
+      decirMuu
       puts 'coin-coin'
-      sayMoo
-      sayMoo
+      decirMuu
+      decirMuu
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      Ahhh, much better.  (Just in case you don't speak
-      French, that was a French duck in the middle of the
-      program.  In France, ducks say <em>"coin-coin"</em>.)
+      Ahhh, mucho mejor. (Sólo en caso que no hables francés,
+      eso fue un pato francés en el medio del programa. En 
+      Francia, los patos dicen <em>"coin-coin"</em>.)
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      So we <span class="L2Pkeyword">#{code 'def'}</span>ined
-      the method #{code 'sayMoo'}.  (Method names, like
-      variable names, start with a lowercase letter.
-      There are a few exceptions, though, like #{code '+'}
-      or #{code '=='}.)
-      But don't methods always have to be associated with
-      objects?  Well, yes they do, and in this case (as with
-      #{code 'puts'} and #{code 'gets'}), the method is just
-      associated with the object representing
-      the whole program.  In the next chapter we'll see how to
-      add methods to other objects.  But first...
+      Entonces, <span class="L2Pkeyword">#{code 'def'}</span>inimos 
+      el método #{code 'decirMuu'}.  (Tanto los nombres de método 
+      como los nombres de variables empiezan en minúscula. 
+      Pero existen excepciones, como #{code '+'} o #{code '=='}.)
+      Sin embargo, los métodos no tendrían que estar siempre 
+      asociados a objetos? Bueno, en realidad sí, y en este caso 
+      (como en #{code 'puts'} and #{code 'gets'}), el método está 
+      asociado con el objeto que representa todo el programa. 
+      En el próximo capítulo veremos cómo agregar métodos a otros 
+      objetos. Pero antes...
       END_PARAGRAPH
     end
-    h2 {'Method Parameters'}
+    h2 {'Parámetros de Métodos'}
     para do <<-END_PARAGRAPH
-      You may have noticed that some methods (like
+      Tal vez hayas notado que para algunos métodos (como 
       #{code 'gets'}, #{code 'to_s'}, #{code 'reverse'}...)
-      you can just call on an object.  However, other methods
-      (like #{code '+'}, #{code '-'}, #{code 'puts'}...)
-      take <dfn>parameters</dfn> to tell the object how to
-      do the method.  For example, you wouldn't just say
-      #{code '5+'}, right?  You're telling #{code '5'} to
-      add, but you aren't telling it <em>what</em>
-      to add.
+      los puedes llamar en un objeto. Sin embargo, otros 
+      métodos (como #{code '+'}, #{code '-'}, #{code 'puts'}...)
+      toman <dfn>parameters</dfn> para decirle al objeto cómo
+      hacer el método. Por ejemplo, no dirías sólo
+      #{code '5+'}, verdad?  Le estas diciendo a #{code '5'} que
+      sume, pero no le estás diciendo  <em>qué</em> sumar.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      To add a parameter to #{code 'sayMoo'} (let's say, the
-      number of moos), we would do this:
+      Para agregar un parámetro a #{code 'decirMuu'} (digamos que es 
+      la cantidad de muus), diríamos esto: 
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def sayMoo numberOfMoos
-        puts 'mooooooo...'*numberOfMoos
+      def decirMuu cantidadDeMuus
+        puts 'muuuuuuu...'*cantidadDeMuus
       end
       
-      sayMoo 3
+      decirMuu 3
       puts 'oink-oink'
-      sayMoo  #  This should give an error because the parameter is missing.
+      decirMuu  #  Esto debería dar un error porque falta el parámetro. 
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      #{code 'numberOfMoos'} is a variable which points to
-      the parameter passed in.  I'll say that again, but it's
-      a little confusing:  #{code 'numberOfMoos'} is a variable
-      which points to the parameter passed in.  So if I type in
-      #{code 'sayMoo 3'}, then the parameter is #{code '3'},
-      and the variable #{code 'numberOfMoos'} points to #{code '3'}.
+      #{code 'cantidadDeMuus'} es una variable que apunta al
+      parámetro que se le pasó a la función. Lo diré nuevamente,
+      pero es un poco confuso:  #{code 'cantidadDeMuus'} es una variable
+      que apunta al parámetro. Entonces si escribo 
+      #{code 'decirMuu 3'}, entonces el parámetro es #{code '3'},
+      y la variable #{code 'cantidadDeMuus'} apunta a #{code '3'}.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      As you can see, the parameter is now <em>required</em>.
-      After all, what is #{code 'sayMoo'} supposed to multiply
-      #{code "'mooooooo...'"} by if you don't give it a
-      parameter?  Your poor computer has no idea.
+      Como pueden ver, ahora el parámetro es <em>requerido</em>.
+      Después de todo, por qué valor tendría que multiplicar 
+      #{code 'decirMuu'} a #{code "'muuuuuuu...'"} si no le das un 
+      parámetro? La pobre computadora no lo sabe.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      If objects in Ruby are like nouns in English, and methods
-      are like verbs, then you can think of parameters as
-      adverbs (like with #{code 'sayMoo'}, where the parameter
-      told us <em>how</em> to #{code 'sayMoo'}) or sometimes as
-      direct objects (like with #{code 'puts'}, where the
-      parameter is <em>what</em> gets #{code 'puts'}ed).
+      Si los objetos en Ruby son como nombres en inglés, y los 
+      métodos son como verbos, entonces puedes pensar en parámetros
+      como adverbios (como con #{code 'decirMuu'}, donde el parámetro
+      nos dice <em>cómo</em> hacer #{code 'decirMuu'}) o a veces
+      como objetos directos (como con #{code 'puts'}, donde el 
+      parámetro es <em>lo</em> que se despliega a pantalla). 
       END_PARAGRAPH
     end
-    h2 {'Local Variables'}
+    h2 {'Variables Locales'}
     para do <<-END_PARAGRAPH
-      In the following program, there are two variables:
+      En el siguiente programa, hay dos variables: 
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def doubleThis num
-        numTimes2 = num*2
-        puts num.to_s+' doubled is '+numTimes2.to_s
+      def duplicaEsto num
+        cantVeces2 = num*2
+        puts num.to_s+' duplicado es '+cantVeces2.to_s
       end
       
-      doubleThis 44
+      duplicaEsto 44
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      The variables are #{code 'num'} and #{code 'numTimes2'}.
-      They both sit inside the method #{code 'doubleThis'}.
-      These (and all of the variables you have seen
-      so far) are <dfn>local variables</dfn>.  This means
-      that they live inside the method, and they cannot leave.
-      If you try, you will get an error:
+      Las variables son #{code 'num'} y #{code 'cantVeces2'}.
+      Ambas se encuentran dentro del método #{code 'duplicaEsto'}.
+      Estas (y toas las otras variables que has visto hasta ahora)
+      son <dfn>variables locales</dfn>.  Esto significa
+      que residen dentro del método, y no existen fuera de él.
+      Si lo intentas, obtendrás un error:
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def doubleThis num
-        numTimes2 = num*2
-        puts num.to_s+' doubled is '+numTimes2.to_s
+      def duplicaEsto num
+        cantVeces2 = num*2
+        puts num.to_s+' duplicado es '+cantVeces2.to_s
       end
       
-      doubleThis 44
-      puts numTimes2.to_s
+      duplicaEsto 44
+      puts cantVeces2.to_s
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      Undefined local variable...  In fact, we <em>did</em>
-      define that local variable, but it isn't local to where
-      we tried to use it; it's local to the method.
+      Variable local no definida... De hecho, <em>sí</em>
+      definimos esa variable local, pero no es local a donde
+      intentamos usarla; es local al método.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      This might seem inconvenient, but it actually quite nice.
-      While it does mean that you have no access to variables
-      inside methods, it also means that they have no access
-      to <em>your</em> variables, and thus can't screw them up:
+      Esto podría parecer un inconveniente, pero en realidad es
+      bastante bueno. Aunque significa que no tienes acceso a 
+      variables dentro de métodos, también significa que éstas
+      no tienen acceso a <em>tus</em> variables, y entonces 
+      no puedes romperlas:
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def littlePest var
+      def miniPeste var
         var = nil
-        puts 'HAHA!  I ruined your variable!'
+        puts 'HAHA!  Rompí tu variable!'
       end
       
-      var = 'You can\\'t even touch my variable!'
-      littlePest var
+      var = 'No puedes siquiera tocar mi variable!'
+      miniPeste var
       puts var
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      There are actually <em>two</em> variables in that little
-      program named #{code 'var'}:  one inside #{code 'littlePest'},
-      and one outside of it.  When we called #{code 'littlePest var'},
-      we really just passed the string from one #{code 'var'} to
-      the other, so that both were pointing to the same string.
-      Then #{code 'littlePest'} pointed its own <em>local</em>
-      #{code 'var'} to #{code 'nil'}, but that did nothing to the
-      #{code 'var'} outside the method.
+      En realidad hay <em>dos</em> variables en ese programita 
+      llamado #{code 'var'}:  uno dentro de #{code 'miniPeste'},
+      y otro fuera de él. Cuando llamamos a #{code 'miniPeste var'},
+      en realidad sólo pasamos la cadena de caracteres de un 
+      #{code 'var'} al otro, para que ambas apunten a la misma
+      cadena de caracteres. 
+      Entonces #{code 'miniPeste'} apuntaba a su propio 
+      #{code 'var'} <em>local</em> a #{code 'nil'}, pero eso no hizo 
+      nada a la #{code 'var'} fuera del método. 
       END_PARAGRAPH
     end
-    h2 {'Return Values'}
+    h2 {'Valores de Retorno'}
     para do <<-END_PARAGRAPH
-      You may have noticed that some methods give you something
-      back when you call them.  For example, #{code 'gets'}
-      <dfn>returns</dfn> a string (the string you typed in),
-      and the #{code '+'} method in #{code '5+3'}, (which is
-      really #{code '5.+(3)'}) returns #{code '8'}.  The
-      arithmetic methods for numbers return numbers, and the
-      arithmetic methods for strings return strings.
-      END_PARAGRAPH
-    end
-    para do <<-END_PARAGRAPH
-      It's important to understand the difference between methods
-      returning a value to where the method was called, and
-      your program outputting information to your screen, like
-      #{code 'puts'} does.  Notice that #{code '5+3'} returns
-      #{code '8'}; it does <strong>not</strong> output
-      #{output '8'}.
+      Tal vez hayas notado que algunos métodos devuelven algo 
+      cuando los llamas. Por ejemplo, #{code 'gets'}
+      <dfn>returns</dfn> (devuelve) una cadena de caracteres 
+      (la que escribiste), y el método #{code '+'} en #{code '5+3'}, 
+      (que es en realidad #{code '5.+(3)'}) devuelve #{code '8'}. Los
+      métodos aritméticos para números devuelven números, y los 
+      métodos aritméticos para cadenas de caracteres devuelven
+      cadenas de caracteres.  
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      So what <em>does</em> #{code 'puts'} return?  We never cared
-      before, but let's look at it now:
+      Es necesario entender la diferencia entre métodos que 
+      devuelven un valor al método que los invocó, y que tu programa 
+      dirija su salida en pantalla, como lo hace  
+      #{code 'puts'}.  Notar que #{code '5+3'} devuelve
+      #{code '8'}; <strong>no</strong> está dirigiendo en pantalla
+      el valor #{output '8'}.
+      END_PARAGRAPH
+    end
+    para do <<-END_PARAGRAPH
+      Entonces, <em>qué</em> devuelve #{code 'puts'}?  No nos 
+      importó hasta ahora, pero veámoslo ahora:
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      returnVal = puts 'This puts returned:'
+      returnVal = puts 'Este puts devolvió:'
       puts returnVal
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      So the first #{code 'puts'} returned #{code 'nil'}.  Though
-      we didn't test it, the second #{code 'puts'} did, too;
-      #{code 'puts'} always returns #{code 'nil'}.  Every method
-      has to return something, even if it's just #{code 'nil'}.
+      Entonces el primer #{code 'puts'} devolvió #{code 'nil'}.  
+      Aunque no lo verificamos, el segundo #{code 'puts'} también;
+      #{code 'puts'} siempre devuelve #{code 'nil'}.  Cada método
+      tiene que devolver algo, aunque sea tan sólo #{code 'nil'}.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      Take a quick break and write a program
-      to find out what #{code 'sayMoo'} returned.
+      Toma un pequeño descanso y escribe un programa para 
+      averiguar qué devolvió #{code 'decirMuu'}.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      Were you surprised?  Well, here's how it works:  the value
-      returned from a method is simply the last line of the method.  In
-      the case of #{code 'sayMoo'}, this means it returns
-      #{code "puts 'mooooooo...'*numberOfMoos"}, which is just
-      #{code 'nil'} since #{code 'puts'} always returns
-      #{code 'nil'}.  If we wanted all of our methods to
-      return the string #{code "'yellow submarine'"}, we
-      would just need to put <em>that</em> at the end of
-      them:
+      Te sorprendiste? Bueno, esto funciona así: el valor que 
+      devuelve un método es simplemente la última línea del método.
+      En el caso de #{code 'decirMuu'}, significa que devuelve 
+      #{code "puts 'muuuuuuu...'*cantidadDeMuus"}, que es
+      justamente #{code 'nil'} dado que #{code 'puts'} devuelve 
+      siempre #{code 'nil'}. Si quisiéramos que todos nuestros 
+      métodos devolvieran la cadena #{code "'submarino amarillo'"}, 
+      sólo tendríamos que ingresar <em>eso mismo</em> al final de 
+      ellos: 
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def sayMoo numberOfMoos
-        puts 'mooooooo...'*numberOfMoos
-        'yellow submarine'
+      def decirMuu cantidadDeMuus
+        puts 'muuuuuuu...'*cantidadDeMuus
+        'submarino amarillo'
       end
       
-      x = sayMoo 2
+      x = decirMuu 2
       puts x
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      So, let's try that psychology experiment again,
-      but this time we'll write a method to ask the questions for us.
-      It will need to take the question as a parameter, and return
-      #{code 'true'} if they answered #{input 'yes'} and
-      #{code 'false'} if they answered #{input 'no'}.  (Even though
-      most of the time we just ignore the answer, it's still a
-      good idea for our method to return the answer.  This way we
-      can use it for the bed-wetting question, too.)
-      I'm also going to shorten the greeting and the debriefing,
-      just so this is easier to read:
+      Entonces, intentemos el experimento psicológico nuevamente,
+      pero esta vez escribiremos un método que haga las preguntas 
+      por nosotros.
+      Este método necesitará tomar como parámetro la pregunta, y 
+      devolver #{code 'true'} si respondieron #{input 'sí'} y 
+      #{code 'false'} si respondieron #{input 'no'}.  (Aunque 
+      la mayoría del tiempo simplemente ignoremos la respuesta, 
+      sigue siendo una buena idea que nuestro método devuelva
+      la respuesta. De esta forma podremos usarlo también para la 
+      pregunta de mojar la cama.)
+      Voy a acortar el saludo y el interrogatorio, así es más 
+      fácil de leer:
       END_PARAGRAPH
     end
-    prog ['yes','yes','no way!','NO','yes','yes','yes','yes','yes'] do <<-END_CODE
+    prog ['sí','sí','de ninguna manera!','NO','sí','sí','sí','sí','sí'] do <<-END_CODE
       def ask question
-        goodAnswer = false
-        while (not goodAnswer)
+        respuestaCorrecta = false
+        while (not respuestaCorrecta)
           puts question
-          reply = gets.chomp.downcase
+          respuesta = gets.chomp.downcase
           
-          if (reply == 'yes' or reply == 'no')
-            goodAnswer = true
-            if reply == 'yes'
-              answer = true
+          if (respuesta == 'sí' or respuesta == 'no')
+            respuestaCorrecta = true
+            if respuesta == 'sí'
+              respuesta = true
             else
-              answer = false
+              respuesta = false
             end
           else
-            puts 'Please answer "yes" or "no".'
+            puts 'Por favor responda por "sí" or "no".'
           end
         end
         
-        answer  #  This is what we return (true or false).
+        respuesta  #  Esto es lo que devolvemos (verdadero o falso). 
       end
       
-      puts 'Hello, and thank you for...'
+      puts 'Hola, y gracias por...'
       puts
       
-      ask 'Do you like eating tacos?'      #  We ignore this return value.
-      ask 'Do you like eating burritos?'
-      wetsBed = ask 'Do you wet the bed?'  #  We save this return value.
-      ask 'Do you like eating chimichangas?'
-      ask 'Do you like eating sopapillas?'
-      ask 'Do you like eating tamales?'
-      puts 'Just a few more questions...'
-      ask 'Do you like drinking horchata?'
-      ask 'Do you like eating flautas?'
+      ask 'Le gusta comer tacos?'      #  Ignoramos este valor de retorno.
+      ask 'Le gusta comer burritos?'
+      mojaLaCama = ask 'Usted moja la cama?'  #  Guardamos este valor de retorno.
+      ask 'Le gusta comer chimichangas?'
+      ask 'Le gusta comer sopapillas?'
+      ask 'Le gusta comer tamales?'
+      puts 'Sólo unas preguntas más...'
+      ask 'Le gusta comer horchata?'
+      ask 'Le gusta comer flautas?'
       
       puts
-      puts 'DEBRIEFING:'
-      puts 'Thank you for...'
+      puts 'INTERROGATORIO:'
+      puts 'Gracias por...'
       puts
-      puts wetsBed
+      puts mojaLaCama
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      Not bad, huh?  We were able to add more questions (and
-      adding questions is <em>easy</em> now), but our program
-      is still quite a bit shorter!  It's a big improvement
-      &mdash; a lazy programmer's dream.
+      No esta mal, no? Pudimos agregar más preguntas (y 
+      agregar preguntas ahora es <em>fácil</em>), pero nuestro 
+      programa sigue siendo bastante más corto! Es una gran mejora 
+      &mdash; el sueño de un programador perezoso.
       END_PARAGRAPH
     end
-    h2 {'One More Big Example'}
+    h2 {'Un Ejemplo Más'}
     para do <<-END_PARAGRAPH
-      I think another example method would be helpful here.
-      We'll call this one #{code 'englishNumber'}.
-      It will take a number, like #{code '22'},
-      and return the english version of it (in this case,
-      the string #{code "'twenty-two'"}).  For now, let's have it
-      only work on integers from #{code '0'} to #{code '100'}.
+      Creo que otro método de ejemplo sería de ayuda. Le llamaremos
+      #{code 'numeroEnIngles'}. Tomará un número, como #{code '22'},
+      y devolverá el número escrito en letras (en este caso, la 
+      cadena #{"'veintidós'"}.  Por ahora, hagamos que sea sobre 
+      enteros de #{code '0'} a #{code '100'}.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      <em>(<strong>NOTE:</strong>  This method uses a new trick
-      to return from a method early using the </em>#{code 'return'}<em>
-      keyword, and introduces a new twist on branching:
-      </em>#{code 'elsif'}<em>.  It should be clear in context
-      how these work.)</em>
+      <em>(<strong>NOTA:</strong>  Este método usa un truco nuevo
+      para salir de un método antes de su fin, utilizando la palabra
+      clave </em>#{code 'return'}<em>, e introduce un giro en 
+      el concepto de bifurcaciones: </em>#{code 'elsif'}<em>.  
+      En el contexto, debería estar claro como funcionan.)</em>
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def englishNumber number
-        #  We only want numbers from 0-100.
-        if number < 0
-          return 'Please enter a number zero or greater.'
+
+      def numeroEnIngles numero
+        #  Sólo queremos números del 0 al 100.
+        if numero < 0
+          return 'Por favor ingrese un número entre 0 y 100.'
         end
-        if number > 100
-          return 'Please enter a number 100 or lesser.'
+        if numero > 100
+          return 'Por favor ingrese un número menor que 100.'
         end
         
-        numString = ''  #  This is the string we will return.
+        numString = ''  #  Esta es la cadena que devolveremos.
         
-        #  "left" is how much of the number we still have left to write out.
-        #  "write" is the part we are writing out right now.
-        #  write and left... get it?  :)
-        left  = number
-        write = left/100          #  How many hundreds left to write out?
-        left  = left - write*100  #  Subtract off those hundreds.
+        #  "left" es lo que falta escribir del número.
+        #  "write" es parte de lo que vamos a escribir ahora.
+        left  = numero
+        write = left/100          #  Cuántas centenas faltan escribir?
+        left  = left - write*100  #  Restar esas centenas.
         
         if write > 0
           return 'one hundred'
         end
         
-        write = left/10          #  How many tens left to write out?
-        left  = left - write*10  #  Subtract off those tens.
+        write = left/10          #  Cuántas decenas faltan escribir?
+        left  = left - write*10  #  Restar las decenas.
         
         if write > 0
           if write == 1  #  Uh-oh...
-            #  Since we can't write "tenty-two" instead of "twelve",
-            #  we have to make a special exception for these.
+            #  Como no podemos escribir "dieci-dos" en vez de "doce",
+            #  hay que hacer una excepción para éstos.
             if    left == 0
               numString = numString + 'ten'
             elsif left == 1
@@ -3036,8 +3042,8 @@ class LearnToProgramTutorial
             elsif left == 9
               numString = numString + 'nineteen'
             end
-            #  Since we took care of the digit in the ones place already,
-            #  we have nothing left to write.
+            #  Como ya nos ocupamos del dígito de las unidades, 
+            #  ya no nos queda más que escribir. 
             left = 0
           elsif write == 2
             numString = numString + 'twenty'
@@ -3062,8 +3068,8 @@ class LearnToProgramTutorial
           end
         end
         
-        write = left  #  How many ones left to write out?
-        left  = 0     #  Subtract off those ones.
+        write = left  #  Cuántas unidades faltan escribir?
+        left  = 0     #  Restar esas unidades. 
         
         if write > 0
           if    write == 1
@@ -3088,47 +3094,48 @@ class LearnToProgramTutorial
         end
         
         if numString == ''
-          #  The only way "numString" could be empty is if
-          #  "number" is 0.
+          #  La única forma "numString" podría estar vacía es
+          #  si "numero" es 0.
           return 'zero'
         end
         
-        #  If we got this far, then we had a number somewhere
-        #  in between 0 and 100, so we need to return "numString".
+        #  Si llegamos hasta aquí, entonces tenemos un número
+        #  entre 0 y 100, entonces hay que devolver
+        #  "numString". 
         numString
       end
       
-      puts englishNumber(  0)
-      puts englishNumber(  9)
-      puts englishNumber( 10)
-      puts englishNumber( 11)
-      puts englishNumber( 17)
-      puts englishNumber( 32)
-      puts englishNumber( 88)
-      puts englishNumber( 99)
-      puts englishNumber(100)
+      puts numeroEnIngles(  0)
+      puts numeroEnIngles(  9)
+      puts numeroEnIngles( 10)
+      puts numeroEnIngles( 11)
+      puts numeroEnIngles( 17)
+      puts numeroEnIngles( 32)
+      puts numeroEnIngles( 88)
+      puts numeroEnIngles( 99)
+      puts numeroEnIngles(100)
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      Well, there are certainly a few things about this program
-      I don't like.  First, it has too much repetition.  Second,
-      it doesn't handle numbers greater than 100.  Third, there
-      are too many special cases, too many #{code 'return'}s.
-      Let's use some arrays and try to clean it up a bit:
+      Bueno, sin lugar a dudas hay cosas que no me gustan sobre
+      este programa. Primero, tiene demasiada repetición. 
+      Segundo, no maneja números mayores a 100. Tercero, hay
+      demasiados casos especiales, demasiados #{code 'return'}s.
+      Usemos arreglos e intentemos limpiarlo un poco:
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def englishNumber number
-        if number < 0  #  No negative numbers.
-          return 'Please enter a number that isn\\'t negative.'
+      def numeroEnIngles numero
+        if numero < 0  #  Que no sea un número negativo.
+          return 'Por favor ingresar un número que no sea negativo.'
         end
-        if number == 0
+        if numero == 0
           return 'zero'
         end
         
-        #  No more special cases!  No more returns!
+        #  No más casos especiales! No más sentencias return! 
         
-        numString = ''  #  This is the string we will return.
+        numString = ''  #  Esta es la cadena que devolveremos.
         
         onesPlace = ['one',     'two',       'three',    'four',     'five',
                      'six',     'seven',     'eight',    'nine']
@@ -3137,155 +3144,154 @@ class LearnToProgramTutorial
         teenagers = ['eleven',  'twelve',    'thirteen', 'fourteen', 'fifteen',
                      'sixteen', 'seventeen', 'eighteen', 'nineteen']
         
-        #  "left" is how much of the number we still have left to write out.
-        #  "write" is the part we are writing out right now.
-        #  write and left... get it?  :)
-        left  = number
-        write = left/100          #  How many hundreds left to write out?
-        left  = left - write*100  #  Subtract off those hundreds.
+        #  "left" es qué parte del número falta escribir. 
+        #  "write" es la parte que estamos escribiendo. 
+        left  = numero
+        write = left/100          #  Cuántas centenas faltan escribir?
+        left  = left - write*100  #  Restar esas centenas.
         
         if write > 0
-          #  Now here's a really sly trick:
-          hundreds  = englishNumber write
+          #  Ahora, lo siguiente es una astucia: 
+          hundreds  = numeroEnIngles write
           numString = numString + hundreds + ' hundred'
-          #  That's called "recursion".  So what did I just do?
-          #  I told this method to call itself, but with "write" instead of
-          #  "number".  Remember that "write" is (at the moment) the number of
-          #  hundreds we have to write out.  After we add "hundreds" to "numString",
-          #  we add the string ' hundred' after it.  So, for example, if
-          #  we originally called englishNumber with 1999 (so "number" = 1999),
-          #  then at this point "write" would be 19, and "left" would be 99.
-          #  The laziest thing to do at this point is to have englishNumber
-          #  write out the 'nineteen' for us, then we write out ' hundred',
-          #  and then the rest of englishNumber writes out 'ninety-nine'.
+          #  A esto se le llama "recursion". Que acabamos de hacer?
+          #  Le pedimos a este método que se llame a sí mismo, pero con "write"
+          #  en vez de "numero". Recordemos que "write" es (por el momento)
+          #  la cantidad de centenas que nos falta escribir. Luego agregamos
+          #  "hundreds" a "numString", y agregamos el string 'hundred' al final.
+          #  Entonces, por ejemplo, si llamamos originalmente numeroEnIngles 
+          #  con 1999 (entonces "numero" = 1999), entonces en este punto "write"
+          #  sería 19, y "left" sería 99. 
+          #  La forma más perezosa en este punto es que numeroEnIngles escriba
+          #  'nineteen', y luego escribamos 'hundred', y el entonces el resto de 
+          #  numeroEnIngles escribe 'ninety-nine'.
           
           if left > 0
-            #  So we don't write 'two hundredfifty-one'...
+            #  No se escribe 'two hundredfifty-one'...
             numString = numString + ' '
           end
         end
         
-        write = left/10          #  How many tens left to write out?
-        left  = left - write*10  #  Subtract off those tens.
+        write = left/10          #  Cuantas decenas faltan escribir? 
+        left  = left - write*10  #  Restar esas decenas.
         
         if write > 0
           if ((write == 1) and (left > 0))
-            #  Since we can't write "tenty-two" instead of "twelve",
-            #  we have to make a special exception for these.
+            # Como no se escribe "tenty-two" en vez de "twelve",
+            # hay que hacer una excepción para estos números.
             numString = numString + teenagers[left-1]
-            #  The "-1" is because teenagers[3] is 'fourteen', not 'thirteen'.
-            
-            #  Since we took care of the digit in the ones place already,
-            #  we have nothing left to write.
+            #  El "-1" es porque teenagers[3] es 'fourteen', y no 'thirteen'.
+
+            #  Como ya nos ocupamos del dígito de las unidades, 
+            #  ya no nos queda más que escribir. 
             left = 0
           else
             numString = numString + tensPlace[write-1]
-            #  The "-1" is because tensPlace[3] is 'forty', not 'thirty'.
+            #  El "-1" es porque tensPlace[3] es 'forty', no 'thirty'.
           end
           
           if left > 0
-            #  So we don't write 'sixtyfour'...
+            #  No escribimos 'sixtyfour'...
             numString = numString + '-'
           end
         end
         
-        write = left  #  How many ones left to write out?
-        left  = 0     #  Subtract off those ones.
+        write = left  #  Cuántas unidades faltan escribir? 
+        left  = 0     #  Sustraer esas unidades. 
         
         if write > 0
           numString = numString + onesPlace[write-1]
-          #  The "-1" is because onesPlace[3] is 'four', not 'three'.
+          #  El "-1" es porque onesPlace[3] es 'four', y no 'three'.
         end
         
-        #  Now we just return "numString"...
+        #  Ahora sólo devolvemos "numString"...
         numString
       end
       
-      puts englishNumber(  0)
-      puts englishNumber(  9)
-      puts englishNumber( 10)
-      puts englishNumber( 11)
-      puts englishNumber( 17)
-      puts englishNumber( 32)
-      puts englishNumber( 88)
-      puts englishNumber( 99)
-      puts englishNumber(100)
-      puts englishNumber(101)
-      puts englishNumber(234)
-      puts englishNumber(3211)
-      puts englishNumber(999999)
-      puts englishNumber(1000000000000)
+      puts numeroEnIngles(  0)
+      puts numeroEnIngles(  9)
+      puts numeroEnIngles( 10)
+      puts numeroEnIngles( 11)
+      puts numeroEnIngles( 17)
+      puts numeroEnIngles( 32)
+      puts numeroEnIngles( 88)
+      puts numeroEnIngles( 99)
+      puts numeroEnIngles(100)
+      puts numeroEnIngles(101)
+      puts numeroEnIngles(234)
+      puts numeroEnIngles(3211)
+      puts numeroEnIngles(999999)
+      puts numeroEnIngles(1000000000000)
       END_CODE
     end
     para do <<-END_PARAGRAPH
-      <em>Ahhhh....</em> That's much, much better.  The program is
-      fairly dense, which is why I put in so many comments.  It
-      even works for large numbers... though not quite as nicely
-      as one would hope.  For example, I think #{code "'one trillion'"}
-      would be a nicer return value for that last number, or even
-      #{code "'one million million'"} (though all three are correct).
-      In fact, you can do that right now...
+      <em>Ahhhh....</em> Esto está mucho, mucho mejor. El programa es muy denso, 
+      por eso le puse tantos comentarios. Inclusive funciona para números 
+      mayores... Aunque no tan bien como uno esperaría. Por ejemplo, 
+      creo que #{code "'one trillion'"} sería un valor de retorno más 
+      adecuado para ese último número, o inclusive 
+      #{code "'one million million'"} (aunque los tres son correctos). 
+      De hecho, se podría hacer ahora mismo...
       END_PARAGRAPH
     end
-    h2 {'A Few Things to Try'}
+    h2 {'Algunas Cosas para Probar'}
     para do <<-END_PARAGRAPH
-      &bull; Expand upon #{code 'englishNumber'}.  First, put in
-      thousands.  So it should return #{code "'one thousand'"}
-      instead of #{code "'ten hundred'"} and #{code "'ten thousand'"}
-      instead of #{code "'one hundred hundred'"}.
-      END_PARAGRAPH
-    end
-    para do <<-END_PARAGRAPH
-      &bull; Expand upon #{code 'englishNumber'} some more.
-      Now put in millions, so you get #{code "'one million'"}
-      instead of #{code "'one thousand thousand'"}.  Then try adding
-      billions and trillions.  How high can you go?
+      &bull; Expandir #{code 'numeroEnIngles'}.  Primero, agregar 
+      los miles.  Entonces debería devolver #{code "'one thousand'"}
+      en vez de #{code "'ten hundred'"} y #{code "'ten thousand'"}
+      en vez de #{code "'one hundred hundred'"}.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      &bull; How about #{code 'weddingNumber'}?  It should
-      work almost the same as #{code 'englishNumber'}, except
-      that it should insert the word "and" all over the place,
-      returning things like #{code "'nineteen hundred and seventy and two'"},
-      or however wedding invitations are supposed to look.  I'd give you more
-      examples, but I don't fully understand it myself.  You might
-      need to contact a wedding coordinator to help you.
+      &bull; Expandir #{code 'numeroEnIngles'} aún más.
+      Ahora agregar millones, para tener #{code "'one million'"}
+      en vez de #{code "'one thousand thousand'"}.  Entonces prueba 
+      agregando billones y trillones.  Hasta dónde puedes llegar? 
+      END_PARAGRAPH
+    end
+    para do <<-END_PARAGRAPH
+      &bull; Qué tal #{code 'weddingNumber'}?  Debería funcionar 
+      tal vez igual que #{code 'numeroEnIngles'}, salvo que debería insertar 
+      la palabra "and" por todos lados, devolviendo cosas como 
+      #{code "'nineteen hundred and seventy and two'"}, o como una invitación
+      de casamiento se supone que debería verse. Daría más ejemplos, pero 
+      ni yo mismo lo entiendo completamente. Tal vez necesites contactar a 
+      una coordinadora de casamientos para que te ayude.
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
       &bull; <em>"Ninety-nine bottles of beer..."</em>
-      Using #{code 'englishNumber'} and your old program, write out the
-      lyrics to this song the <em>right</em> way this time.
-      Punish your computer:  have it start at 9999.  (Don't pick
-      a number too large, though, because writing all of that to
-      the screen takes your computer quite a while.  A hundred
-      thousand bottles of beer takes some time; and if you pick
-      a million, you'll be punishing yourself as well!
+      Usando #{code 'numeroEnIngles'} y tu programa anterior, escribe la letra
+      de esta canción, de la forma <em>correcta</em> esta vez. 
+      Castiga a tu computadora:  comienza con 9999. (Sin embargo, no elijas 
+      un número demasiado grande porque escribir todo eso en pantalla 
+      lleva un cierto tiempo; y si elijes un millón, te estarás castigando
+      a ti mismo también!
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      Congratulations!  At this point, you are a true
-      programmer!  You have learned
-      everything you need to build huge programs from scratch.
-      If you have ideas for programs you would like to write
-      for yourself, give them a shot!
+      Felicitaciones! Llegado a este punto, eres un verdadero programador!
+      Has aprendido todo lo necesario para hacer programas grandes
+      enteros. Si tienes ideas para programas que quisieras 
+      escribir por ti mismo, inténtalo!
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      Of course, building everything from scratch can be a
-      pretty slow process.  Why spend time writing code that
-      someone else already wrote?  
-      Would you like your program to send some email?
-      Would you like to save and load files on your computer?
-      How about generating web pages for a tutorial where
-      the code samples are actually being run every time the
-      web page is loaded?  ;) Ruby has many different
-      #{makeLink 'kinds of objects', :generateClasses}
-      we can use to help us write better programs faster.
+      Pero es claro que armar todo desde cero puede ser un proceso
+      bastante lento. Por qué perder tiempo escribiendo código que
+      alguien más ya escribió?
+      Quieres que tu programa envíe correos?
+      Quieres guardar y abrir archivos en tu computadora?
+      Qué tal generar páginas para un tutorial donde los ejemplos 
+      de código se ejecutan cada vez que se carga la página 
+      web?  ;) Ruby tiene diferentes 
+      #{makeLink 'tipos de objetos', :generateClasses} que podemos
+      usar para ayudarnos a escribir programas mejores y más 
+      rápidos.
       END_PARAGRAPH
     end
   end
-  
+
   #
   #  CLASSES
   #
