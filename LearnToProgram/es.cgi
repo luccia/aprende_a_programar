@@ -2977,7 +2977,7 @@ class LearnToProgramTutorial
     h2 {'Un Ejemplo Más'}
     para do <<-END_PARAGRAPH
       Creo que otro método de ejemplo sería de ayuda. Le llamaremos
-      #{code 'numeroEnIngles'}. Tomará un número, como #{code '22'},
+      #{code 'numeroEnEspanol'}. Tomará un número, como #{code '22'},
       y devolverá el número escrito en letras (en este caso, la 
       cadena #{"'veintidós'"}.  Por ahora, hagamos que sea sobre 
       enteros de #{code '0'} a #{code '100'}.
@@ -2993,13 +2993,13 @@ class LearnToProgramTutorial
     end
     prog do <<-END_CODE
 
-      def numeroEnIngles numero
-        #  Sólo queremos números del 0 al 100.
+      def numeroEnEspanol numero
+        #  Sólo queremos números del 0 al 99.
         if numero < 0
-          return 'Por favor ingrese un número entre 0 y 100.'
+          return 'Por favor ingrese un número entre 0 y 99.'
         end
-        if numero > 100
-          return 'Por favor ingrese un número menor que 100.'
+        if numero > 99
+          return 'Por favor ingrese un número menor que 99.'
         end
         
         numString = ''  #  Esta es la cadena que devolveremos.
@@ -3022,49 +3022,75 @@ class LearnToProgramTutorial
             #  Como no podemos escribir "dieci-dos" en vez de "doce",
             #  hay que hacer una excepción para éstos.
             if    left == 0
-              numString = numString + 'ten'
+              numString = numString + 'diez'
             elsif left == 1
-              numString = numString + 'eleven'
+              numString = numString + 'once'
             elsif left == 2
-              numString = numString + 'twelve'
+              numString = numString + 'doce'
             elsif left == 3
-              numString = numString + 'thirteen'
+              numString = numString + 'trece'
             elsif left == 4
-              numString = numString + 'fourteen'
+              numString = numString + 'catorce'
             elsif left == 5
-              numString = numString + 'fifteen'
+              numString = numString + 'quince'
             elsif left == 6
-              numString = numString + 'sixteen'
+              numString = numString + 'dieciséis'
             elsif left == 7
-              numString = numString + 'seventeen'
+              numString = numString + 'diecisiete'
             elsif left == 8
-              numString = numString + 'eighteen'
+              numString = numString + 'dieciocho'
             elsif left == 9
-              numString = numString + 'nineteen'
+              numString = numString + 'diecinueve'
             end
             #  Como ya nos ocupamos del dígito de las unidades, 
             #  ya no nos queda más que escribir. 
             left = 0
           elsif write == 2
-            numString = numString + 'twenty'
+            #  Como no podemos escribir "veinte y dos" en vez de "veintidós",
+            #  hay que hacer una excepción para éstos también.
+            if    left == 0
+              numString = numString + 'veinte'
+            elsif left == 1
+              numString = numString + 'veintiuno'
+            elsif left == 2
+              numString = numString + 'veintidós'
+            elsif left == 3
+              numString = numString + 'veintitrés'
+            elsif left == 4
+              numString = numString + 'veinticuatro'
+            elsif left == 5
+              numString = numString + 'veinticinco'
+            elsif left == 6
+              numString = numString + 'veintiséis'
+            elsif left == 7
+              numString = numString + 'veintisiete'
+            elsif left == 8
+              numString = numString + 'veintiocho'
+            elsif left == 9
+              numString = numString + 'veintinueve'
+            end
+            #  Como ya nos ocupamos del dígito de las unidades, 
+            #  ya no nos queda más que escribir. 
+            left = 0
           elsif write == 3
-            numString = numString + 'thirty'
+            numString = numString + 'treinta'
           elsif write == 4
-            numString = numString + 'forty'
+            numString = numString + 'cuarenta'
           elsif write == 5
-            numString = numString + 'fifty'
+            numString = numString + 'cincuenta'
           elsif write == 6
-            numString = numString + 'sixty'
+            numString = numString + 'sesenta'
           elsif write == 7
-            numString = numString + 'seventy'
+            numString = numString + 'setenta'
           elsif write == 8
-            numString = numString + 'eighty'
+            numString = numString + 'ochenta'
           elsif write == 9
-            numString = numString + 'ninety'
+            numString = numString + 'noventa'
           end
           
-          if left > 0
-            numString = numString + '-'
+          if left > 0           
+            
+            numString = numString + ' y '
           end
         end
         
@@ -3073,30 +3099,30 @@ class LearnToProgramTutorial
         
         if write > 0
           if    write == 1
-            numString = numString + 'one'
+            numString = numString + 'uno'
           elsif write == 2
-            numString = numString + 'two'
+            numString = numString + 'dos'
           elsif write == 3
-            numString = numString + 'three'
+            numString = numString + 'tres'
           elsif write == 4
-            numString = numString + 'four'
+            numString = numString + 'cuatro'
           elsif write == 5
-            numString = numString + 'five'
+            numString = numString + 'cinco'
           elsif write == 6
-            numString = numString + 'six'
+            numString = numString + 'seis'
           elsif write == 7
-            numString = numString + 'seven'
+            numString = numString + 'siete'
           elsif write == 8
-            numString = numString + 'eight'
+            numString = numString + 'ocho'
           elsif write == 9
-            numString = numString + 'nine'
+            numString = numString + 'nueve'
           end
         end
         
         if numString == ''
           #  La única forma "numString" podría estar vacía es
           #  si "numero" es 0.
-          return 'zero'
+          return 'cero'
         end
         
         #  Si llegamos hasta aquí, entonces tenemos un número
@@ -3105,44 +3131,48 @@ class LearnToProgramTutorial
         numString
       end
       
-      puts numeroEnIngles(  0)
-      puts numeroEnIngles(  9)
-      puts numeroEnIngles( 10)
-      puts numeroEnIngles( 11)
-      puts numeroEnIngles( 17)
-      puts numeroEnIngles( 32)
-      puts numeroEnIngles( 88)
-      puts numeroEnIngles( 99)
-      puts numeroEnIngles(100)
+      puts numeroEnEspanol(  0)
+      puts numeroEnEspanol(  9)
+      puts numeroEnEspanol( 10)
+      puts numeroEnEspanol( 11)
+      puts numeroEnEspanol( 17)
+      puts numeroEnEspanol( 32)
+      puts numeroEnEspanol( 88)
+      puts numeroEnEspanol( 99)
+      puts numeroEnEspanol(100)
       END_CODE
     end
     para do <<-END_PARAGRAPH
       Bueno, sin lugar a dudas hay cosas que no me gustan sobre
       este programa. Primero, tiene demasiada repetición. 
-      Segundo, no maneja números mayores a 100. Tercero, hay
+      Segundo, no maneja números mayores a 99. Tercero, hay
       demasiados casos especiales, demasiados #{code 'return'}s.
       Usemos arreglos e intentemos limpiarlo un poco:
       END_PARAGRAPH
     end
     prog do <<-END_CODE
-      def numeroEnIngles numero
+      def numeroEnEspanol numero
         if numero < 0  #  Que no sea un número negativo.
           return 'Por favor ingresar un número que no sea negativo.'
+        elsif numero >= 500
+          return 'Por favor ingresar un número menor a 500.' 
         end
         if numero == 0
-          return 'zero'
+          return 'cero'
         end
         
         #  No más casos especiales! No más sentencias return! 
         
         numString = ''  #  Esta es la cadena que devolveremos.
         
-        onesPlace = ['one',     'two',       'three',    'four',     'five',
-                     'six',     'seven',     'eight',    'nine']
-        tensPlace = ['ten',     'twenty',    'thirty',   'forty',    'fifty',
-                     'sixty',   'seventy',   'eighty',   'ninety']
-        teenagers = ['eleven',  'twelve',    'thirteen', 'fourteen', 'fifteen',
-                     'sixteen', 'seventeen', 'eighteen', 'nineteen']
+        onesPlace = ['uno',     'dos',       'tres',    'cuatro',     'cinco',
+                     'seis',     'siete',     'ocho',    'nueve']
+        tensPlace = ['diez',     'veinte',    'treinta',   'cuarenta',    'cincuenta',
+                     'sesenta',   'setenta',   'ochenta',   'noventa']
+        teenagers = ['once',  'doce',    'trece', 'catorce', 'quince',
+                     'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve']
+        veintipico = ['veintiuno', 'veintidós', 'veintitrés', 'veinticuatro', 'veinticinco',
+                      'veintiséis', 'veintisiete', 'veintiocho', 'veintinueve']
         
         #  "left" es qué parte del número falta escribir. 
         #  "write" es la parte que estamos escribiendo. 
@@ -3152,23 +3182,31 @@ class LearnToProgramTutorial
         
         if write > 0
           #  Ahora, lo siguiente es una astucia: 
-          hundreds  = numeroEnIngles write
-          numString = numString + hundreds + ' hundred'
+          hundreds  = numeroEnEspanol write
           #  A esto se le llama "recursion". Que acabamos de hacer?
           #  Le pedimos a este método que se llame a sí mismo, pero con "write"
           #  en vez de "numero". Recordemos que "write" es (por el momento)
           #  la cantidad de centenas que nos falta escribir. Luego agregamos
           #  "hundreds" a "numString", y agregamos el string 'hundred' al final.
-          #  Entonces, por ejemplo, si llamamos originalmente numeroEnIngles 
+          #  Entonces, por ejemplo, si llamamos originalmente numeroEnEspanol 
           #  con 1999 (entonces "numero" = 1999), entonces en este punto "write"
           #  sería 19, y "left" sería 99. 
-          #  La forma más perezosa en este punto es que numeroEnIngles escriba
+          #  La forma más perezosa en este punto es que numeroEnEspanol escriba
           #  'nineteen', y luego escribamos 'hundred', y el entonces el resto de 
-          #  numeroEnIngles escribe 'ninety-nine'.
+          #  numeroEnEspanol escribe 'ninety-nine'.
           
-          if left > 0
-            #  No se escribe 'two hundredfifty-one'...
-            numString = numString + ' '
+          if write == 1
+            if left == 0
+              numString = numString + 'cien'               
+            else
+              numString = numString + 'ciento '
+            end 
+          else
+            numString = numString + hundreds + 'cientos'
+            if left > 0
+              #  No se escribe 'doscientoscincuenta y uno '...
+              numString = numString + ' '            
+            end
           end
         end
         
@@ -3177,22 +3215,26 @@ class LearnToProgramTutorial
         
         if write > 0
           if ((write == 1) and (left > 0))
-            # Como no se escribe "tenty-two" en vez de "twelve",
+            # Como no se escribe "diez y dos" en vez de "doce",
             # hay que hacer una excepción para estos números.
             numString = numString + teenagers[left-1]
-            #  El "-1" es porque teenagers[3] es 'fourteen', y no 'thirteen'.
-
+            #  El "-1" es porque teenagers[3] es 'catorce', y no 'trece'.
+          
             #  Como ya nos ocupamos del dígito de las unidades, 
             #  ya no nos queda más que escribir. 
             left = 0
+          elsif ((write == 2) and (left > 0))
+            # lo mismo para las veintenas
+            numString = numString + veintipico[left-1]
+            left = 0
           else
             numString = numString + tensPlace[write-1]
-            #  El "-1" es porque tensPlace[3] es 'forty', no 'thirty'.
+            #  El "-1" es porque tensPlace[3] es 'cuarenta', no 'treinta'.
           end
           
           if left > 0
-            #  No escribimos 'sixtyfour'...
-            numString = numString + '-'
+            #  No escribimos 'sesentacuatro'...
+            numString = numString + ' y '
           end
         end
         
@@ -3201,32 +3243,33 @@ class LearnToProgramTutorial
         
         if write > 0
           numString = numString + onesPlace[write-1]
-          #  El "-1" es porque onesPlace[3] es 'four', y no 'three'.
+          #  El "-1" es porque onesPlace[3] es 'cuatro', y no 'tres'.
         end
         
         #  Ahora sólo devolvemos "numString"...
         numString
       end
       
-      puts numeroEnIngles(  0)
-      puts numeroEnIngles(  9)
-      puts numeroEnIngles( 10)
-      puts numeroEnIngles( 11)
-      puts numeroEnIngles( 17)
-      puts numeroEnIngles( 32)
-      puts numeroEnIngles( 88)
-      puts numeroEnIngles( 99)
-      puts numeroEnIngles(100)
-      puts numeroEnIngles(101)
-      puts numeroEnIngles(234)
-      puts numeroEnIngles(3211)
-      puts numeroEnIngles(999999)
-      puts numeroEnIngles(1000000000000)
+      puts numeroEnEspanol(  0)
+      puts numeroEnEspanol(  9)
+      puts numeroEnEspanol( 10)
+      puts numeroEnEspanol( 11)
+      puts numeroEnEspanol( 17)
+      puts numeroEnEspanol( 20)
+      puts numeroEnEspanol( 27)
+      puts numeroEnEspanol( 32)
+      puts numeroEnEspanol( 88)
+      puts numeroEnEspanol( 99)
+      puts numeroEnEspanol(100)
+      puts numeroEnEspanol(101)
+      puts numeroEnEspanol(234)
+      puts numeroEnEspanol(3211)
       END_CODE
     end
     para do <<-END_PARAGRAPH
       <em>Ahhhh....</em> Esto está mucho, mucho mejor. El programa es muy denso, 
-      por eso le puse tantos comentarios. Inclusive funciona para números 
+      por eso le puse tantos comentarios. 
+      Inclusive funciona para números 
       mayores... Aunque no tan bien como uno esperaría. Por ejemplo, 
       creo que #{code "'one trillion'"} sería un valor de retorno más 
       adecuado para ese último número, o inclusive 
@@ -3236,22 +3279,20 @@ class LearnToProgramTutorial
     end
     h2 {'Algunas Cosas para Probar'}
     para do <<-END_PARAGRAPH
-      &bull; Expandir #{code 'numeroEnIngles'}.  Primero, agregar 
-      los miles.  Entonces debería devolver #{code "'one thousand'"}
-      en vez de #{code "'ten hundred'"} y #{code "'ten thousand'"}
-      en vez de #{code "'one hundred hundred'"}.
+      &bull; Expandir #{code 'numeroEnEspanol'}.  Primero, agregar el resto
+      de las centenas. Entonces debería devolver #{code "'quinientos'"}.  
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
-      &bull; Expandir #{code 'numeroEnIngles'} aún más.
-      Ahora agregar millones, para tener #{code "'one million'"}
-      en vez de #{code "'one thousand thousand'"}.  Entonces prueba 
-      agregando billones y trillones.  Hasta dónde puedes llegar? 
+      &bull; Expandir #{code 'numeroEnEspanol'} aún más.
+      Ahora agregar los miles, para tener #{code "'diez mil'"}.
+      Entonces prueba agregando millones y trillones.
+      Hasta dónde puedes llegar? 
       END_PARAGRAPH
     end
     para do <<-END_PARAGRAPH
       &bull; Qué tal #{code 'weddingNumber'}?  Debería funcionar 
-      tal vez igual que #{code 'numeroEnIngles'}, salvo que debería insertar 
+      tal vez igual que #{code 'numeroEnEspanol'}, salvo que debería insertar 
       la palabra "and" por todos lados, devolviendo cosas como 
       #{code "'nineteen hundred and seventy and two'"}, o como una invitación
       de casamiento se supone que debería verse. Daría más ejemplos, pero 
@@ -3261,7 +3302,7 @@ class LearnToProgramTutorial
     end
     para do <<-END_PARAGRAPH
       &bull; <em>"Ninety-nine bottles of beer..."</em>
-      Usando #{code 'numeroEnIngles'} y tu programa anterior, escribe la letra
+      Usando #{code 'numeroEnEspanol'} y tu programa anterior, escribe la letra
       de esta canción, de la forma <em>correcta</em> esta vez. 
       Castiga a tu computadora:  comienza con 9999. (Sin embargo, no elijas 
       un número demasiado grande porque escribir todo eso en pantalla 
